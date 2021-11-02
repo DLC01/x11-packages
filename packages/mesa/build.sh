@@ -1,12 +1,12 @@
 TERMUX_PKG_HOMEPAGE=https://www.mesa3d.org
 TERMUX_PKG_DESCRIPTION="An open-source implementation of the OpenGL specification"
 TERMUX_PKG_LICENSE="MIT"
-TERMUX_PKG_MAINTAINER="DLC01"
+TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION=21.2.5
 TERMUX_PKG_SRCURL=https://archive.mesa3d.org/mesa-${TERMUX_PKG_VERSION}.tar.xz
 TERMUX_PKG_SHA256=8e49585fb760d973723dab6435d0c86f7849b8305b1e6d99f475138d896bacbb
-TERMUX_PKG_DEPENDS="libandroid-shmem, libllvm, bison, flex, libexpat, libdrm, libx11, libxdamage, libxext, zstd, libxml2, libxshmfence, zlib"
-TERMUX_PKG_BUILD_DEPENDS="xorgproto, cmake"
+TERMUX_PKG_DEPENDS="libandroid-shmem, libllvm, bison, flex, libexpat, libdrm, libxdamage, libxext, zstd, libxml2, libxshmfence, zlib"
+TERMUX_PKG_BUILD_DEPENDS="xorgproto"
 TERMUX_PKG_CONFLICTS="libmesa"
 TERMUX_PKG_REPLACES="libmesa"
 TERMUX_PKG_RM_AFTER_INSTALL="include/KHR/khrplatform.h"
@@ -39,6 +39,8 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 "
 
 termux_step_pre_configure() {
+        termux_setup_cmake
+
 	export LIBS=" -landroid-shmem -llog -latomic -ldl"
 }
 
@@ -57,3 +59,4 @@ termux_step_post_massage() {
 termux_step_install_license() {
 	install -Dm600 -t $TERMUX_PREFIX/share/doc/mesa $TERMUX_PKG_BUILDER_DIR/LICENSE
 }
+
