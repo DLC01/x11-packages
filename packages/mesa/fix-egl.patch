@@ -1,0 +1,33 @@
+diff --color -uNr mesa-21.2.5/bin/install_megadrivers.py mesa-21.2.5.mod/bin/install_megadrivers.py
+--- mesa-21.2.5/bin/install_megadrivers.py	2021-10-28 22:19:52.817498700 +0530
++++ mesa-21.2.5.mod/bin/install_megadrivers.py	2021-11-01 20:37:01.349532830 +0530
+@@ -24,8 +24,16 @@
+ 
+ from __future__ import print_function
+ import argparse
+-import os
++import os, shutil
+ 
++def link(src, dest):
++    shutil.copyfile(src, dest)
++
++def unlink(src):
++    os.remove(src)
++
++os.link = link
++os.unlink = unlink
+ 
+ def main():
+     parser = argparse.ArgumentParser()
+diff --color -uNr mesa-21.2.5/src/egl/main/egldisplay.h mesa-21.2.5.mod/src/egl/main/egldisplay.h
+--- mesa-21.2.5/src/egl/main/egldisplay.h	2021-10-28 22:19:53.008499400 +0530
++++ mesa-21.2.5.mod/src/egl/main/egldisplay.h	2021-11-01 20:49:55.177532876 +0530
+@@ -37,7 +37,7 @@
+ #include "egltypedefs.h"
+ #include "egldefines.h"
+ #include "eglarray.h"
+-
++#include <X11/Xlib.h>
+ 
+ #ifdef __cplusplus
+ extern "C" {
