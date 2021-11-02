@@ -11,7 +11,6 @@ TERMUX_PKG_CONFLICTS="libmesa"
 TERMUX_PKG_REPLACES="libmesa"
 TERMUX_PKG_RM_AFTER_INSTALL="include/KHR/khrplatform.h"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
--Dprefix=$TERMUX_PREFIX
 -Dgbm=disabled
 -Dshader-cache=enabled
 -Ddri3=enabled
