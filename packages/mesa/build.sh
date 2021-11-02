@@ -35,6 +35,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -Dgallium-drivers=swrast
 -Dshared-glapi=enabled
 -Ddri-drivers=[]
+--native-file $TERMUX_PKG_BUILDER_DIR/cross-llvm.ini
 "
 
 termux_step_pre_configure() {
