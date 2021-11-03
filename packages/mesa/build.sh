@@ -9,6 +9,7 @@ TERMUX_PKG_DEPENDS="libandroid-shmem, llvm, libllvm, libx11, bison, flex, libexp
 TERMUX_PKG_BUILD_DEPENDS="xorgproto"
 TERMUX_PKG_CONFLICTS="libmesa"
 TERMUX_PKG_REPLACES="libmesa"
+TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_RM_AFTER_INSTALL="include/KHR/khrplatform.h"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -Dgbm=disabled
