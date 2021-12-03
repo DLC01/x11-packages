@@ -6,7 +6,7 @@ TERMUX_PKG_VERSION=21.3.1
 TERMUX_PKG_SRCURL=https://archive.mesa3d.org/mesa-${TERMUX_PKG_VERSION}.tar.xz
 TERMUX_PKG_SHA256=2b0dc2540cb192525741d00f706dbc4586349185dafc65729c7fda0800cc474d
 TERMUX_PKG_DEPENDS="bison, flex, libexpat, libdrm, libxdamage, libxext, zstd, libxml2, libxshmfence, zlib"
-TERMUX_PKG_BUILD_DEPENDS="xorgproto, libandroid-shmem-static, libllvm-static"
+TERMUX_PKG_BUILD_DEPENDS="xorgproto, libandroid-shmem-static, libllvm-static, cmake"
 TERMUX_PKG_CONFLICTS="libmesa"
 TERMUX_PKG_REPLACES="libmesa"
 TERMUX_PKG_RM_AFTER_INSTALL="include/KHR/khrplatform.h"
@@ -27,7 +27,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -Dgles2=enabled
 -Dlmsensors=disabled
 -Dllvm=enabled
--Dshared-llvm=false
+-Dshared-llvm=disabled
 -Dglx=dri
 -Dplatforms=x11
 -Dopengl=true
@@ -39,7 +39,6 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 "
 
 termux_step_pre_configure() {
-        termux_setup_cmake
 
 	export LIBS=" -landroid-shmem -llog -latomic -ldl"
 }
